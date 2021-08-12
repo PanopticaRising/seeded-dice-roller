@@ -15,12 +15,12 @@ use clap::{AppSettings, Clap};
 use crate::utils::{app::App, ui::Event};
 
 
-/// This doc string acts as a help message when the user runs '--help'
-/// as do all doc strings on fields
+/// This is a simple CLI dice roller. It optionally allows you to specify a seed for a fun repeatable experience.
 #[derive(Clap)]
-#[clap(version = "1.0", author = "Gibryon Bhojraj <gibryon@protonmail.com>")]
+#[clap(version = "1.0", author = "Gib <gibryon@protonmail.com>")]
 #[clap(setting = AppSettings::ColoredHelp)]
 struct Opts {
+    /// A string (word, sentence, etc) to initialize the random generator.
     #[clap(short, long)]
     seed: String,
 }
@@ -35,7 +35,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
 
     let backend = CrosstermBackend::new(stdout);
-
     let mut terminal = Terminal::new(backend)?;
 
     // Setup input handling
