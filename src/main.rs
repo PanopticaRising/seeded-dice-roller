@@ -12,7 +12,7 @@ use tui::{Terminal, backend::CrosstermBackend};
 
 use clap::{AppSettings, Clap};
 
-use crate::utils::{app::App, ui::Event};
+use crate::utils::{app::App, user_interface::Event};
 
 
 /// This is a simple CLI dice roller. It optionally allows you to specify a seed for a fun repeatable experience.
@@ -40,13 +40,13 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Setup input handling
     let (tx, rx) = mpsc::channel();
 
-    utils::ui::initialize_ui_thread(tx);
+    utils::user_interface::initialize_ui_thread(tx);
 
     let mut app = App::new();
     terminal.clear()?;
 
     loop {
-        terminal.draw(|f| utils::ui::draw(f, &mut app))?;
+        terminal.draw(|f| utils::user_interface::draw(f, &mut app))?;
 
         match rx.recv()? {
             Event::Input(event) => match event.code {
