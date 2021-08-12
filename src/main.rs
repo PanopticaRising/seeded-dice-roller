@@ -12,7 +12,7 @@ use tui::{Terminal, backend::CrosstermBackend};
 
 use clap::{AppSettings, Clap};
 
-use crate::utils::{App::App, UI::Event};
+use crate::utils::{app::App, ui::Event};
 
 
 /// This doc string acts as a help message when the user runs '--help'
@@ -41,13 +41,13 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Setup input handling
     let (tx, rx) = mpsc::channel();
 
-    utils::UI::initialize_ui_thread(tx);
+    utils::ui::initialize_ui_thread(tx);
 
     let mut app = App::new();
     terminal.clear()?;
 
     loop {
-        terminal.draw(|f| utils::UI::draw(f, &mut app))?;
+        terminal.draw(|f| utils::ui::draw(f, &mut app))?;
 
         match rx.recv()? {
             Event::Input(event) => match event.code {

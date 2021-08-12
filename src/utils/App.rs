@@ -1,8 +1,8 @@
 use rand_pcg::Pcg64;
 use strum::IntoEnumIterator;
 
-use super::StatefulList::StatefulList;
-use super::Dice::Dice;
+use super::stateful_list::StatefulList;
+use super::dice::Dice;
 
 // items and events have to be public to display to the UI.
 pub struct App {
@@ -17,9 +17,10 @@ impl App {
         }
     }
 
-    pub fn roll_die(&self, rng: &mut Pcg64) {
+    pub fn roll_die(&mut self, rng: &mut Pcg64) {
         if let Some(i) = self.items.state.selected() {
-            Dice::roll_die(rng, self.items.items.get(i).unwrap());
+            let val = Dice::roll_die(rng, self.items.items.get(i).unwrap());
+            self.events.push(val);
         }
     }
 }

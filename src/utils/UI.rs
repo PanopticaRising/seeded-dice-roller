@@ -6,7 +6,7 @@ use tui::{Frame, backend::CrosstermBackend, layout::{Constraint, Direction, Layo
 
 use strum::IntoEnumIterator;
 
-use super::{App::App, Dice::Dice};
+use super::{app::App, dice::Dice};
 
 pub enum Event<I> {
     Input(I),
@@ -22,7 +22,7 @@ pub fn draw(f: &mut Frame<CrosstermBackend<Stdout>>, app: &mut App) {
     .split(f.size());
 
     let items: Vec<tui::widgets::ListItem> =
-        Dice::iter().map(|d| ListItem::new(d.to_string())).collect();
+        Dice::iter().map(|d| ListItem::new(d.to_string().to_ascii_lowercase())).collect();
 
     let block = Block::default().title("Block").borders(Borders::ALL);
     let list = List::new(items)

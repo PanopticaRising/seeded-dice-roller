@@ -1,4 +1,4 @@
-pub mod StatefulList;
-pub mod UI;
-pub mod Dice;
-pub mod App;
+pub mod stateful_list;
+pub mod ui;
+pub mod dice;
+pub mod app;

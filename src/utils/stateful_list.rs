@@ -6,6 +6,7 @@ pub struct StatefulList<T> {
 }
 
 impl<T> StatefulList<T> {
+    #[allow(dead_code)]
     pub fn new() -> StatefulList<T> {
         StatefulList {
             state: ListState::default(),
