@@ -1,5 +1,5 @@
 [package]
-name = "QuickDice"
+name = "seeded-dice-roller"
 version = "0.1.0"
 edition = "2018"
 
@@ -10,8 +10,8 @@ rand = "0.8"
 clap = "3.0.0-beta.2"
 rand_seeder = "0.2"
 rand_pcg = "0.3"
-# youchoose = "0.1"
-# youchoose = { path = "./youchoose" }
 strum = { version = "0.21", features = ["derive"] }
-tui = "0.16"
-termion = "1.5"
+# tui = "0.16"
+# termion = "1.5"
+crossterm = "0.20"
+tui = { version = "0.16", default-features = false, features = ['crossterm'] }
