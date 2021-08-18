@@ -15,3 +15,9 @@ strum = { version = "0.21", features = ["derive"] }
 # termion = "1.5"
 crossterm = "0.20"
 tui = { version = "0.16", default-features = false, features = ['crossterm'] }
+regex = "1"
+lazy_static = "1.4.0"
+
+[patch.crates-io]
+rand_pcg = { git = "https://github.com/PanopticaRising/rand", branch = "expose-internal-state" }
+rand_core = { git = "https://github.com/PanopticaRising/rand", branch = "expose-internal-state" }
