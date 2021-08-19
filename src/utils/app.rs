@@ -17,10 +17,13 @@ impl App {
         }
     }
 
-    pub fn roll_die(&mut self, rng: &mut Pcg64) {
+    pub fn roll_die(&mut self, rng: &mut Pcg64) -> Option<u16> {
         if let Some(i) = self.items.state.selected() {
             let val = Dice::roll_die(rng, self.items.items.get(i).unwrap());
             self.events.push(val);
+            Some(val)
+        } else {
+            None
         }
     }
 }
